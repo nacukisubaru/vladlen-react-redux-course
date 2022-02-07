@@ -4,9 +4,17 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore} from 'redux'
+import {Provider} from 'react-redux'
 import { rootReducer } from "./redux/index.js";
 
 const store = createStore(rootReducer)
+
+//Оборачиваем компонент App в провайдер для того чтобы связать наш store с приложением
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
 
 ReactDOM.render(
   <React.StrictMode>
