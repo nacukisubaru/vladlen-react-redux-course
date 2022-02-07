@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {createPost} from '../redux/actions/postActions'
+import Alert from './Alert'
+import {showAlert} from '../redux/actions/appActions'
 
 class PostForm extends React.Component {
     constructor(props) {
@@ -15,9 +17,11 @@ class PostForm extends React.Component {
         event.preventDefault()
 
         const {title} = this.state
+        this.props.showAlert(null)
 
         if(!title.trim()) {
-            return
+            this.props.showAlert('Внимание! Вы не ввели заголовок поста!')
+            return 
         }
 
         const newPost = {
@@ -38,6 +42,9 @@ class PostForm extends React.Component {
     }
 
     render() {
+        const isVissible = this.props.app.alert;
+        console.log(this.props.app)
+    
         return (
             <form onSubmit={this.submitHandler}>
                 <div className="form-group">
@@ -51,14 +58,21 @@ class PostForm extends React.Component {
                         name="title"
                     />
                 </div>
+                {isVissible ? <Alert /> : ''}
                 <button className="btn btn-success" type="submit">Создать</button>
             </form>
         )
+        
     }
 }
 
 const mapDispatchToProps = {
-    createPost
+    createPost,
+    showAlert
 }
 
-export default connect(null, mapDispatchToProps)(PostForm)
+const mapStateToProps = state => {
+    return state
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm)

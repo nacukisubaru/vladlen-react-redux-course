@@ -1,8 +1,15 @@
-import { LOADER } from "../reducers/appReducer";
+import { LOADER, ALERT } from "../reducers/appReducer";
 
 export function loadding(isLoad) {
     return {
         type: LOADER,
-        payLoad: isLoad
+        payload: isLoad
+    }
+}
+
+export function showAlert(text) {
+    return {
+        type: ALERT,
+        payload: text
     }
 }

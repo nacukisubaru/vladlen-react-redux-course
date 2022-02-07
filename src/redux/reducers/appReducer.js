@@ -1,7 +1,9 @@
 export const LOADER = 'APP/LOADER'
+export const ALERT = 'APP/ALERT'
 
 const initialState = {
-    loadding: false
+    loadding: false,
+    alert: null
 }
 
 // Pure functions
@@ -10,6 +12,8 @@ export const appReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOADER:
             return {...state, loadding: action.payload}
+        case ALERT:
+            return {...state, alert: action.payload}
         default: return state
     }
 }
