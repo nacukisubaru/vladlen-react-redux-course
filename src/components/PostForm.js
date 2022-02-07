@@ -42,7 +42,7 @@ class PostForm extends React.Component {
     }
 
     render() {
-        const isVissible = this.props.app.alert;
+        const isVissible = this.props.alert;
         console.log(this.props.app)
     
         return (
@@ -58,7 +58,7 @@ class PostForm extends React.Component {
                         name="title"
                     />
                 </div>
-                {isVissible ? <Alert /> : ''}
+                {isVissible && <Alert />}
                 <button className="btn btn-success" type="submit">Создать</button>
             </form>
         )
@@ -72,7 +72,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = state => {
-    return state
+    return {alert: state.app.alert}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm)
