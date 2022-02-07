@@ -1,4 +1,4 @@
-import { CREATE_POST } from "./types"
+import { CREATE_POST } from "../postsReducer"
 
 export function createPost(post) {
     return {
