@@ -6,7 +6,7 @@ const Posts = ({syncPosts}) => {
     if(!syncPosts.length) {
         return <p className="text-center">Постов пока нет</p>
     }
-    return syncPosts.map((post) => <Post post={post} key={post}></Post>)
+    return syncPosts.map((post) => <Post post={post} key={post.id}></Post>)
 }
 
 //хелпер ф-ции mapStateToProps состояние конвертирует в propsы для компонента Posts 
